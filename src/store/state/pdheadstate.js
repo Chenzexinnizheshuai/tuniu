@@ -5,9 +5,16 @@ const state = {
         {num : 2 , title : '国内游'},
         {num : 3 , title : '周边游'},
     ],
+
     /**
      * 二级菜单数据 
      */
-    pdsec : [{}]
+    pdsec : [{}],
+
+    /**
+     * 产品主列表
+     */
+    pdlistdata : [{}]
+
 }
 export default state

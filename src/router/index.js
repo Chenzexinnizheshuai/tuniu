@@ -7,6 +7,11 @@ Vue.use(Router)
 
 const routes = [
     {
+        path : '',
+        name : home,
+        component : home
+    },
+    {
         path : '/adv',
         name : 'adv',
         component : advcom

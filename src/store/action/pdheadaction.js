@@ -1,4 +1,4 @@
-import {getsecdata} from '@API/getdata'
+import {getsecdata,getpdlist} from '@API/getdata'
 const actions = {
     pdsecmenu({commit}){
         getsecdata().then((res)=>{
@@ -9,5 +9,13 @@ const actions = {
             }) 
         })
     },
+    pdlist({commit}){
+        getpdlist().then((res)=>{
+            commit({
+                type : 'PDLIST',
+                payload : res.data.data.products
+            })
+        })
+    }
 }
 export default actions

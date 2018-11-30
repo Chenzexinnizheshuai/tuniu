@@ -2,12 +2,14 @@
     <div>
         <p-head :arr="pd" :theindex='index'></p-head>
         <p-l-head :arr='pdsec'></p-l-head>
+        <pd-list></pd-list>
     </div>
 </template>
 
 <script>
 import prdhead from './producthead'
 import prdlittlehead from './litle'//商品二级菜单
+import pdlist from './pdlist'
 import {createNamespacedHelpers} from 'vuex'
 const {mapActions,mapGetters,mapState} = createNamespacedHelpers('pdhstore')
 export default {
@@ -18,7 +20,8 @@ export default {
     },
     components : {
         PHead : prdhead,
-        PLHead : prdlittlehead/*二级菜单*/
+        PLHead : prdlittlehead,/*二级菜单*/
+        PdList : pdlist 
     },
     computed : {
         /**

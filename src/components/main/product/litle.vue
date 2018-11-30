@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul style="z-index:1">
         <li :key='index' v-for="(item,index) in arr[theindex]">
             <div class="theitem">
                 {{item}}

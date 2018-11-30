@@ -1,9 +1,11 @@
-import {PDHEAD} from './type'
+import {PDHEAD,PDLIST} from './type'
 const mutation = {
     [PDHEAD](state,{payload}){
-        console.log(payload)
         state.pdsec = payload
-        console.log(payload,'payloadpayloadpayloadpayloadpayloadpayloadpayloadpayloadpayload')
+    },
+    [PDLIST](state,{payload}){
+        console.log(payload)
+        state.pdlistdata = payload
     }
 }
 export default mutation

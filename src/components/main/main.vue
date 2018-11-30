@@ -4,7 +4,6 @@
         <top-swiper></top-swiper>
         <m-destination></m-destination>
         <p-header class="p_header"></p-header>
-        <div style="height : 1000px"></div>
     </article>
 </template>
 <script>
