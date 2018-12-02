@@ -24,8 +24,6 @@ export default {
 <style lang="scss">
     .p_header{
         margin-top: 10px;
-        position: sticky;
-        top : 50px;
     }
 </style>
 

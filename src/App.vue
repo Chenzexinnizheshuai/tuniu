@@ -10,13 +10,17 @@
 import header from '@C/head/head'
 // import main from '@C/main/main'
 import adv from '@C/main/advertising/advertising'
-
 export default {
     components : {
         MHeader : header,
         MAdv : adv
         // MMain : main
-    }
+    },
+    mounted() {
+        this.$nextTick(()=>{
+            console.log($('.p_header').children())
+        })
+    },
 }
 </script>
 <style lang="scss">

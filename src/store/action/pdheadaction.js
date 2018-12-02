@@ -9,13 +9,14 @@ const actions = {
             }) 
         })
     },
-    pdlist({commit}){
-        getpdlist().then((res)=>{
-            commit({
-                type : 'PDLIST',
-                payload : res.data.data.products
+    pdlist({commit},{page}){
+        console.log(page)
+          getpdlist(page).then((res)=>{
+                commit({
+                    type : 'PDLIST',
+                    payload : res.data.data.products
+                })
             })
-        })
     }
 }
 export default actions

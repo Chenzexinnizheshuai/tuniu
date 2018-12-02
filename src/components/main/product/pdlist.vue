@@ -1,5 +1,10 @@
 <template>
-    <ul class="pd_list-block">
+<div >
+    <ul class="pd_list-block"
+        ref = 'list'
+        v-infinite-scroll="loadMore"
+        infinite-scroll-disabled="loading"
+        infinite-scroll-distance="0">
         <li class="pd_list_item" :key='index' v-for="(item,index) in pdlistdata">
             <div class="pd_list_head">
                 <div class="pd_list_img_box">
@@ -25,34 +30,58 @@
             </div>
         </li>
     </ul>
+    </div>
 </template>
 <script>
 import {createNamespacedHelpers} from 'vuex'
+import { InfiniteScroll } from 'mint-ui';
 const {mapActions,mapState} = createNamespacedHelpers('pdhstore')
 export default {
     data(){
         return {
-
+            currentpage : 0,
+            loading : false
         }
     },
     created() {
-        this.pdlist()
+        this.loadMore()
     },
     computed : {
         ...mapState(['pdlistdata'])
     },
     methods : {
-        ...mapActions(['pdlist']),
+       a(){
+           console.log('lala')
+       },
+       loadMore(){
+            console.log($(this.$refs.list).children(),'........................')
+           this.loading = true;
+           this.currentpage++;
+           this.$store.dispatch({
+               type : 'pdhstore/pdlist',
+               page : this.currentpage
+           })
+           this.loading = false;
+       },
         icontype(type){
-            console.log(type,1)
             switch(type){
                 case 1 : return 'fa-flag';
                 case 2 : return 'fa-briefcase';
                 default : return 'fa-flag'
             }
         }
-
-    }
+    },
+    mounted() {
+        // this.$nextTick(()=>{
+        //     let h = this.$refs.list.offsetHeight
+        //     console.log(h)
+        //     this.$refs.list.style.height = h-1 + 'px'
+        // })
+    },
+    updated() {
+        let h = this.$refs.list.offsetHeight
+        this.$refs.list.style.height = h-20 + 'px'
+    },
 
 }
 </script>
