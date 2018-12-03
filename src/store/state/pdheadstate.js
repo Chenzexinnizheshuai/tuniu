@@ -14,7 +14,7 @@ const state = {
     /**
      * 产品主列表
      */
-    pdlistdata : [{}]
+    pdlistdata : []
 
 }
 export default state

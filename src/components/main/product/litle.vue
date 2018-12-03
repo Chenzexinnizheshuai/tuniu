@@ -1,7 +1,7 @@
 <template>
     <ul style="z-index:1">
         <li :key='index' v-for="(item,index) in arr[theindex]">
-            <div class="theitem">
+            <div ref="lala" class="theitem">
                 {{item}}
             </div>
         </li>
@@ -9,6 +9,7 @@
 </template>
 <script>
 import bus from '@LIB/bus'
+
 export default {
     props : {
         arr:{default : 1}

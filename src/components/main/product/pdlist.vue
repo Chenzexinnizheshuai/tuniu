@@ -4,11 +4,11 @@
         ref = 'list'
         v-infinite-scroll="loadMore"
         infinite-scroll-disabled="loading"
-        infinite-scroll-distance="0">
+        infinite-scroll-distance="10">
         <li class="pd_list_item" :key='index' v-for="(item,index) in pdlistdata">
             <div class="pd_list_head">
                 <div class="pd_list_img_box">
-                    <img class='pd_list_img' :src="item.imgUrl" alt="">
+                    <img class='pd_list_img' v-lazy="item.imgUrl" alt="">
                     <div class="price">
                         ￥<em>{{item.promotionPrice}}</em>起
                     </div>
@@ -34,7 +34,7 @@
 </template>
 <script>
 import {createNamespacedHelpers} from 'vuex'
-import { InfiniteScroll } from 'mint-ui';
+// import { InfiniteScroll } from 'mint-ui';
 const {mapActions,mapState} = createNamespacedHelpers('pdhstore')
 export default {
     data(){
@@ -54,7 +54,6 @@ export default {
            console.log('lala')
        },
        loadMore(){
-            console.log($(this.$refs.list).children(),'........................')
            this.loading = true;
            this.currentpage++;
            this.$store.dispatch({
@@ -79,8 +78,8 @@ export default {
         // })
     },
     updated() {
-        let h = this.$refs.list.offsetHeight
-        this.$refs.list.style.height = h-20 + 'px'
+        // let h = this.$refs.list.offsetHeight
+        // this.$refs.list.style.height = h-20 + 'px'
     },
 
 }
@@ -96,6 +95,13 @@ export default {
                     overflow: hidden;
                     position: relative;
                     .pd_list_img{
+                        position: absolute;
+                        top : 50%;
+                        transform: translateY(-50%)
+                    }
+                    image[lazy=loading] {
+                        width: 375px;
+                        height: 250px;
                         position: absolute;
                         top : 50%;
                         transform: translateY(-50%)

@@ -1,25 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import advcom from '@C/main/advertising'
-import home from '@C/main/main'
+// import advcom from '@C/main/advertising'
+// import home from '@C/main/main'
 
 Vue.use(Router)
 
 const routes = [
     {
         path : '',
-        name : home,
-        component : home
+        name : 'home',
+        component : resolve=>require(["@C/main/main"],resolve)
     },
     {
         path : '/adv',
         name : 'adv',
-        component : advcom
+        component :  resolve=>require(["@C/main/advertising"],resolve)
     },
     {
         path : '/home',
         name : 'home',
-        component : home
+        component :  resolve=>require(["@C/main/main"],resolve)
     }
 ]
 
