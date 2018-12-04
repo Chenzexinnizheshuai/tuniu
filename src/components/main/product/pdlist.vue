@@ -8,7 +8,7 @@
         <li class="pd_list_item" :key='index' v-for="(item,index) in pdlistdata">
             <div class="pd_list_head">
                 <div class="pd_list_img_box">
-                    <img class='pd_list_img' v-lazy="item.imgUrl" alt="">
+                    <img class='pd_list_img' :src="item.imgUrl" alt="">
                     <div class="price">
                         ￥<em>{{item.promotionPrice}}</em>起
                     </div>
@@ -35,31 +35,33 @@
 <script>
 import {createNamespacedHelpers} from 'vuex'
 // import { InfiniteScroll } from 'mint-ui';
-const {mapActions,mapState} = createNamespacedHelpers('pdhstore')
+const {mapActions,mapState,mapMutations} = createNamespacedHelpers('pdhstore')
 export default {
     data(){
         return {
-            currentpage : 0,
             loading : false
         }
     },
     created() {
-        this.loadMore()
+        console.log('cccreate')
     },
     computed : {
-        ...mapState(['pdlistdata'])
+        ...mapState(['pdlistdata','apiid','apipage'])
     },
     methods : {
+        ...mapMutations(['PDLIST_API_PAGE']),
        a(){
            console.log('lala')
        },
        loadMore(){
            this.loading = true;
-           this.currentpage++;
+           console.log(this.apipage)
            this.$store.dispatch({
                type : 'pdhstore/pdlist',
-               page : this.currentpage
+               page : this.apipage,
+               apiid : this.apiid
            })
+           this.PDLIST_API_PAGE();
            this.loading = false;
        },
         icontype(type){
@@ -76,10 +78,14 @@ export default {
         //     console.log(h)
         //     this.$refs.list.style.height = h-1 + 'px'
         // })
+        console.log("mmmmm")
+ 
     },
     updated() {
         // let h = this.$refs.list.offsetHeight
         // this.$refs.list.style.height = h-20 + 'px'
+        this.$refs.list.scrollTop = 0
+        console.log("upupupuu")
     },
 
 }
@@ -88,6 +94,7 @@ export default {
     .pd_list-block{
         width: 100%;
         position: relative;
+        
         .pd_list_item{
             .pd_list_head{
                 .pd_list_img_box{
@@ -97,14 +104,17 @@ export default {
                     .pd_list_img{
                         position: absolute;
                         top : 50%;
-                        transform: translateY(-50%)
+                        transform: translateY(-50%);
+                        width: 100%;
+
                     }
                     image[lazy=loading] {
                         width: 375px;
                         height: 250px;
                         position: absolute;
                         top : 50%;
-                        transform: translateY(-50%)
+                        transform: translateY(-50%);
+                        width: 100%;
                     }
                     .price{
                         color: white;

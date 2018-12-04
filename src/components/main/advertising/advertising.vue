@@ -1,13 +1,13 @@
 <template>
 <div class="adv_big_box">
     <div class="ssticky">
-        <nav  style="height: 575px" ref="bs_wrapper">
+        <nav  style="height: 520px" ref="bs_wrapper" >
             <ul class="adv_nav_box">
                 <!-- {{nav}} -->
                 <li class="adv_nav" 
                     :key="index" 
                     v-for="(item,index) in nav"
-                    @click="()=>changeactive(index)"
+                    @touchstart="()=>changeactive(index)"
                     :class="{'active' :index == num}"
                 >
                 <!-- 通过当前data的num和li的index是否相同来添加active -->
@@ -63,12 +63,8 @@ export default {
         }
     },
     async created() {
-        await this.nava()
-        this.$nextTick(()=>{
-            new this.BS(this.$refs.bs_wrapper,{
-                click : true,
-            })
-        })
+        this.nava().then()
+
     },
     methods : {
         ...mapActions(['nava']),
@@ -93,7 +89,16 @@ export default {
         ...mapState(['nav']),
         ...mapGetters(['advgetter']),
         //advgetter返回的是一个方法，方法中要传入一个index，也即是this.num
-
+    },
+    mounted(){
+        this.$nextTick(()=>{
+            setTimeout(()=>{
+            new this.BS(this.$refs.bs_wrapper,{
+                click : true,
+                bounce : false
+            })
+            },100)
+        })
     }
 }
 </script>

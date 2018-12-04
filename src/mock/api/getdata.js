@@ -15,4 +15,4 @@ export const getgirls = () =>$ajax.get('/api/girls')
 export const getsecdata = ()=>$ajax.get('/api/advsecmenu')
 
 /*获取商品列表*/
-export const getpdlist = (page)=>$ajax.get('https://m.tuniu.com/mapi/home/getProductList?cityCode=200&moduleId=15539530&currentPage='+page+'&pageLimit=10')
+export const getpdlist = (page,apiid)=>$ajax.get(`https://m.tuniu.com/mapi/home/getProductList?cityCode=200&moduleId=${apiid}&currentPage=${page}&pageLimit=10`)

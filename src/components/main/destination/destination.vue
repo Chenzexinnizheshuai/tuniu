@@ -52,14 +52,12 @@ export default {
     created() {
         this.axios.get('http://localhost:8081/api/getUniqueData')
                   .then(res=>{
-                      console.log(res)
                     this.uniqueData = res.data.data.destinations.tabs
                   })
         
     },
     methods : {
         changeactive(index){
-            console.log()
             this.tab.forEach((element,theindex) => {
                 theindex==index?element.active=true:element.active=false
             });

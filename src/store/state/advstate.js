@@ -1,5 +1,6 @@
 const advstate = {
     nav : [1],
-    detail : []
+    detail : [],
+    
 }
 export default advstate

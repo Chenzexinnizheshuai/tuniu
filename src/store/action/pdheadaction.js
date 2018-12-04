@@ -9,13 +9,30 @@ const actions = {
             }) 
         })
     },
-    pdlist({commit},{page}){
+    pdlist({commit},{page,apiid}){
         console.log(page)
-          getpdlist(page).then((res)=>{
-                commit({
-                    type : 'PDLIST',
-                    payload : res.data.data.products
-                })
+          getpdlist(page,apiid).then((res)=>{
+                if(res.data.data.totalPageCount!==0){
+                    commit({
+                        type : 'PDLIST',
+                        payload : res.data.data.products
+                    })
+                }else{
+                    console.log('无更多数据')
+                }
+            })
+    },
+    newpdlist({commit},{page,apiid}){
+        console.log(page)
+          getpdlist(page,apiid).then((res)=>{
+                if(res.data.data.totalPageCount!==0){
+                    commit({
+                        type : 'NEWPDLIST',
+                        payload : res.data.data.products
+                    })
+                }else{
+                    console.log('无更多数据')
+                }
             })
     }
 }

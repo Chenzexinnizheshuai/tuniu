@@ -1,14 +1,15 @@
 <template>
     <div>
-        <p-head :arr="pd" :theindex='index'></p-head>
-        <p-l-head :arr='pdsec'></p-l-head>
+        <div class="headcontainer">
+            <p-head :arr="pd" :theindex='index'></p-head>
+            <p-l-head :arr='pdsec'></p-l-head>
+        </div>
         <pd-list></pd-list>
-        <p style="height:20px">32333</p>
     </div>
 </template>
 
 <script>
-import prdhead from './producthead'
+import prdhead from './producthead'//商品一级菜单
 import prdlittlehead from './litle'//商品二级菜单
 import pdlist from './pdlist'
 import {createNamespacedHelpers} from 'vuex'
@@ -44,6 +45,10 @@ export default {
 </script>
 
 <style lang="scss">
-
+    .headcontainer{
+        position: sticky;
+        top: 50px;
+        z-index: 100
+    }
 </style>
 

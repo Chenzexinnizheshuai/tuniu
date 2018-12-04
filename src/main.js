@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import $ from 'jquery'
+// import $ from 'jquery'
 import { InfiniteScroll ,Lazyload} from 'mint-ui';
 Vue.use(InfiniteScroll)
 Vue.use(Lazyload);

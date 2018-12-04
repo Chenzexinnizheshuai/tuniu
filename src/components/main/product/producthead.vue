@@ -1,6 +1,6 @@
 <template >
     <ul class="the_list_ul">
-        <li class="the_list_li" :class="{'active' : index==num}" @click="()=>changeactive(index)" :key="index" v-for="(item,index) in arr">
+        <li class="the_list_li" :m="index" :class="{'active' : index==num}" @click="()=>changeactive(index)" :key="index" v-for="(item,index) in arr">
             {{item.title}}
         </li>
     </ul>
@@ -20,6 +20,12 @@ export default {
         changeactive(index){
             this.num = index
             bus.$emit('secindexchange',index)
+            this.$store.commit({
+                type : 'pdhstore/PDSECLIST',
+                payload : {
+                    num : 0
+                }
+            })
         }
     }
 }
