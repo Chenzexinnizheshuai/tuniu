@@ -5,7 +5,11 @@
         v-infinite-scroll="loadMore"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10">
-        <li class="pd_list_item" :key='index' v-for="(item,index) in pdlistdata">
+        <li class="pd_list_item" 
+            :key='index' 
+            v-for="(item,index) in pdlistdata"
+            @click="gotodetail"
+            >
             <div class="pd_list_head">
                 <div class="pd_list_img_box">
                     <img class='pd_list_img' :src="item.imgUrl" alt="">
@@ -34,58 +38,55 @@
 </template>
 <script>
 import {createNamespacedHelpers} from 'vuex'
-// import { InfiniteScroll } from 'mint-ui';
+import { InfiniteScroll } from 'mint-ui';
 const {mapActions,mapState,mapMutations} = createNamespacedHelpers('pdhstore')
 export default {
+
     data(){
         return {
-            loading : false
+            loading : false,
+            
         }
     },
     created() {
-        console.log('cccreate')
+
     },
     computed : {
         ...mapState(['pdlistdata','apiid','apipage'])
     },
     methods : {
         ...mapMutations(['PDLIST_API_PAGE']),
-       a(){
-           console.log('lala')
-       },
-       loadMore(){
-           this.loading = true;
-           console.log(this.apipage)
-           this.$store.dispatch({
-               type : 'pdhstore/pdlist',
-               page : this.apipage,
-               apiid : this.apiid
-           })
-           this.PDLIST_API_PAGE();
-           this.loading = false;
-       },
+        loadMore(){
+            this.loading = true;
+            this.$store.dispatch({
+                type : 'pdhstore/pdlist',
+                page : this.apipage,
+                apiid : this.apiid
+            })
+            this.PDLIST_API_PAGE();
+            this.loading = false;
+        },
         icontype(type){
             switch(type){
                 case 1 : return 'fa-flag';
                 case 2 : return 'fa-briefcase';
                 default : return 'fa-flag'
             }
+        },
+        gotodetail(){
+            this.$router.push({
+                name : "detail",
+                query : {
+                    name :1
+                }
+            })
         }
     },
     mounted() {
-        // this.$nextTick(()=>{
-        //     let h = this.$refs.list.offsetHeight
-        //     console.log(h)
-        //     this.$refs.list.style.height = h-1 + 'px'
-        // })
-        console.log("mmmmm")
- 
+
     },
     updated() {
-        // let h = this.$refs.list.offsetHeight
-        // this.$refs.list.style.height = h-20 + 'px'
         this.$refs.list.scrollTop = 0
-        console.log("upupupuu")
     },
 
 }

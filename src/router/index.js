@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import advcom from '@C/main/advertising'
-// import home from '@C/main/main'
 
 Vue.use(Router)
 
@@ -9,7 +7,7 @@ const routes = [
     {
         path : '',
         name : 'home',
-        component : resolve=>require(["@C/main/main"],resolve)
+        component : resolve=>require(["@C/main/main"],resolve)//这是一个promise 必须在require的回调函数中resolve（）才会继续
     },
     {
         path : '/adv',
@@ -20,11 +18,15 @@ const routes = [
         path : '/home',
         name : 'home',
         component :  resolve=>require(["@C/main/main"],resolve)
+    },
+    {
+        path : '/detail',
+        name : 'detail',
+        component : resolve=>require(["@C/detail/detail"],resolve)
     }
 ]
 
 export default new Router ({
     routes ,
     mode: 'history',
-    base: process.env.BASE_URL,
 })

@@ -1,13 +1,20 @@
 <template>
     <div>
-        <router-view></router-view>
+        {{$route.query.name}}
     </div>
 </template>
 <script>
 export default {
+    data(){
+        return {
+           
 
+        }
+    }
 }
 </script>
 <style lang="scss">
 
 </style>
+
+

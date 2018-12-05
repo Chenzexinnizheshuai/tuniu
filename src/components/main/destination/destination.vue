@@ -170,6 +170,7 @@ export default {
                         text-align: center;
                         margin-right: 12px;
                         margin-bottom: 10px;
+                        flex-grow:  1;
                         span{
                             display: block;
                             border: 1px solid #f6f6f8;

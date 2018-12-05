@@ -30,6 +30,9 @@ const actions = {
                         type : 'NEWPDLIST',
                         payload : res.data.data.products
                     })
+                    commit({
+                        type : "PDLIST_API_PAGE_NUM"
+                    })
                 }else{
                     console.log('无更多数据')
                 }

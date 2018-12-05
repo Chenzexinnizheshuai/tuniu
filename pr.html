@@ -1,0 +1,4 @@
+<script>
+ new Promise(res=>res(1)).then(res =>res(new Promise(res=>res(2)))).then(res=>console.log(res))
+ console.log(typeof Promise.resolve(1))
+</script>
