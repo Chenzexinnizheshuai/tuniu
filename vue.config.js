@@ -16,18 +16,19 @@ module.exports = {
     },
     configureWebpack: {
 
-           plugins: [
+       plugins: [
+
+          new webpack.ProvidePlugin({
+
+            $:"jquery",
+
+            jQuery:"jquery",
+
+            "windows.jQuery":"jquery"
         
-              new webpack.ProvidePlugin({
-        
-                $:"jquery",
-        
-                jQuery:"jquery",
-        
-                "windows.jQuery":"jquery"
-            
-              })
-    ]
+          })
+        ],
+       
 
     }
 }

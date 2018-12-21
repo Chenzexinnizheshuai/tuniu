@@ -1,7 +1,7 @@
 <template>
-    <el-carousel :interval="500" arrow="never" ref='carousel' autoplay loop height='75px'>
+    <el-carousel v-show="false" :interval="500" arrow="never" ref='carousel' autoplay loop height='75px'>
         <el-carousel-item v-for="(item) in swiperUrl" :key="item" >
-            <img :src='item' style="width:100%" >
+            <img v-lazy='item' style="width:100%" >
         </el-carousel-item>
     </el-carousel>
 </template>

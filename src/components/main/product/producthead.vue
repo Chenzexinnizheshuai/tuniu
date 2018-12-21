@@ -1,6 +1,11 @@
 <template >
     <ul class="the_list_ul">
-        <li class="the_list_li" :m="index" :class="{'active' : index==num}" @click="()=>changeactive(index)" :key="index" v-for="(item,index) in arr">
+        <li class="the_list_li" 
+        :m="index" 
+        :class="{'active' : index==num}" 
+        @click="()=>changeactive(index)" 
+        :key="index" 
+        v-for="(item,index) in arr">
             {{item.title}}
         </li>
     </ul>

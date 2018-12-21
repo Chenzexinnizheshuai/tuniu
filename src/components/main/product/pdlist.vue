@@ -45,7 +45,6 @@ export default {
     data(){
         return {
             loading : false,
-            
         }
     },
     created() {
@@ -83,7 +82,7 @@ export default {
         }
     },
     mounted() {
-
+        var a = 55 //{#}
     },
     updated() {
         this.$refs.list.scrollTop = 0
