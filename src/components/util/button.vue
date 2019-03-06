@@ -10,27 +10,46 @@ export default {
         size : "",
         color : "",
         myclick : "",
-        time : ""
+        time : "",
+        prpfun : ""   
     },
-    
+    inject:['name',"LL","app"],
     created(){
         this.gettime()
+        console.log(this.app)
+        //我练习册
+        function testable(sth) {
+            return function(target){
+		        target.prototype.isTestable = sth;
+            }
+		}
+		@testable("wawawa")
+		class Son{
+			constructor(arg){
+				this.age = 10
+			}
+		}
+		console.log(new Son().isTestable)  //wwawawa
+    },
+    mounted(){
+
     },
     methods : {
         fun(){
-            this.$emit("on-click")
+            this.$emit("on-click",{
+                res : "按钮的消息"
+            })
         },
         gettime(){
             this.nowdata = this.time
             var a = this.nowdata
             if(this.nowdata){
                 this.timer = setInterval(()=>{
-                    console.log(54)
                     if(this.nowdata){
                         this.nowdata = --a
                     }else{
                         clearInterval(this.timer)
-                        this.disabled =false
+                        // this.disabled =false
                     }
                 },1000)
             }
@@ -39,7 +58,7 @@ export default {
     },
     data(){
         return {
-            disabled :true,
+            disabled :false,
             nowdata : 0
         }
     },

@@ -41,7 +41,24 @@ const routes = [
         path : '/detail',
         name : 'detail',
         // component : resolve=>require(["@C/detail/detail"],resolve)
-        component :  r => require.ensure([], () => r(require('@C/detail/detail')), 'chunkname4')
+        component :  r => require.ensure([], () => r(require('@C/detail/detail')), 'chunkname4'),
+        children : [
+            {
+                path : 'one',
+                name : 'one',
+                component : ()=>import('@C/detail/one.vue')
+            },
+            {
+                path : 'two',
+                name : 'two',
+                component : ()=>import('@C/detail/two.vue')
+            }
+        ]
+    },
+    {
+        path : '/lazyload',
+        name : 'lazyload',
+        component : ()=>import('@C/detail/lazyload.vue')
     }
 ]
 

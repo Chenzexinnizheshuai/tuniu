@@ -24,13 +24,14 @@ export default {
         PHeader,
     },
     beforeCreate(){
-        console.log( navigator.geolocation)
         navigator.geolocation.getCurrentPosition(pos);
         function pos(poss){
             Cookie.set("mypositionlatitude",poss.coords.latitude)
-            console.log(poss.coords)
             Cookie.set("mypositionlongitude",poss.coords.longitude)
         }
+    },
+    beforeRouteLeave (to, from, next) {
+        next(true)
     }
 }
 </script>

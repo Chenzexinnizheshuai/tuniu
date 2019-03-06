@@ -50,6 +50,10 @@ export default {
     created() {
 
     },
+    beforeRouteLeave (to, from , next) {
+        next(false)
+        
+    },
     computed : {
         ...mapState(['pdlistdata','apiid','apipage'])
     },
@@ -74,7 +78,8 @@ export default {
         },
         gotodetail(){
             this.$router.push({
-                name : "detail",
+                name : "one",
+                // path : '/detail/one',
                 query : {
                     name :1
                 }
